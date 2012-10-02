@@ -6,7 +6,7 @@ Akado::Account - get internet provider Akado account info
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use strict;
 use warnings FATAL => 'all';
@@ -16,7 +16,7 @@ use Carp;
 use Digest::MD5 qw(md5_hex);
 use HTTP::Request::Common;
 use LWP;
-use XML::Simple;
+use XML::XPath;
 
 =head1 SYNOPSIS
 
@@ -181,10 +181,15 @@ B<Get:> 1) $self 2) $xml
 B<Return:> 1) $parsed_data
 
 Metod gets xml that was previously downloaded from the Akado account site and
-returnes some data from.
+returnes some data from it.
 
-This method is ugly written, but it does its job. The better thing is to
-rewrite it using XPath.
+It will return something like:
+
+    {
+        balance            => 1558.82,
+        date               => "2012-10-02",
+        next_month_payment => 779,
+    }
 
 =end comment
 
@@ -193,25 +198,17 @@ rewrite it using XPath.
 sub _parse_xml {
     my ($self, $xml) = @_;
 
-    my $account_info = XMLin($xml);
+    my $xp = XML::XPath->new( xml => $xml );
 
-    my $parsed_account_info;
+    my $date = $xp->findnodes('//account/@date')->[0]->getNodeValue();
+    my $balance = $xp->findnodes('//status[@description="Остаток на счете"]/@amount')->[0]->getNodeValue();
+    my $next_month_payment = $xp->findnodes('//status[@description="Стоимость услуг в следующем месяце"]/@amount')->[0]->getNodeValue();
 
-    $parsed_account_info->{date} = $account_info->{date};
-
-    if ($account_info->{status}->[3]->{description} eq "Остаток на счете") {
-        $parsed_account_info->{balance} = $account_info->{status}->[3]->{amount};
-    } else {
-        croak "Got incorrect data structure.";
-    }
-
-    if ($account_info->{status}->[4]->{status}->[1]->{description}
-        eq "Стоимость услуг в следующем месяце") {
-        $parsed_account_info->{next_month_payment}
-            = $account_info->{status}->[4]->{status}->[1]->{amount};
-    } else {
-        croak "Got incorrect data structure.";
-    }
+    my $parsed_account_info = {
+        date => $date,
+        balance => $balance,
+        next_month_payment => $next_month_payment,
+    };
 
     return $parsed_account_info;
 }

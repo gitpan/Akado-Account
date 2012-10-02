@@ -1,4 +1,7 @@
 Revision history for Akado::Account
 
-0.01    Date/time
-        First version, released on an unsuspecting world.
+0.01    2012-09-29
+        * First public release
+
+0.02    2012-10-02
+        * Fixing incorrect xml parse
