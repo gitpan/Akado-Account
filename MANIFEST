@@ -1,10 +1,15 @@
 Changes
+LICENSE
 MANIFEST
+META.yml
 Makefile.PL
 README
+dist.ini
 lib/Akado/Account.pm
+release_checklist
 t/00-load.t
-t/manifest.t
-t/pod-coverage.t
-t/pod.t
-META.yml                                 Module meta-data (added by MakeMaker)
+t/_parse_xml.t
+t/author-boilerplate.t
+t/author-pod-coverage.t
+t/author-pod.t
+t/author-whitespaces.t

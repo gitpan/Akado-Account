@@ -1,0 +1,10 @@
+# What to do before release
+
+ * Make sure you have no local changes
+ * change version in the main .pm file in lib
+ * Add release info to Changes
+ * grep previous relese number in distro and make sure it is found only in
+   Changes file
+ * Run `prove` to make sure all tests pass
+ * Generate README with `pod2readme`
+ * Commit it

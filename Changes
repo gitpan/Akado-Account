@@ -5,3 +5,8 @@ Revision history for Akado::Account
 
 0.02    2012-10-02
         * Fixing incorrect xml parse
+
+0.03    2013-04-02
+        * Module is now released with Dist::Zilla
+        * Added .travis.yml
+        * Some fixes in tests
