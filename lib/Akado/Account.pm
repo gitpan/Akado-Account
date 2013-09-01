@@ -1,6 +1,6 @@
 package Akado::Account;
 {
-  $Akado::Account::VERSION = '0.03';
+  $Akado::Account::VERSION = '1.0.0';
 }
 
 # ABSTRACT: get internet provider Akado account info
@@ -188,7 +188,7 @@ Akado::Account - get internet provider Akado account info
 
 =head1 VERSION
 
-version 0.03
+version 1.0.0
 
 =head1 SYNOPSIS
 
@@ -203,6 +203,11 @@ Unfortunately Akdado account site has no API, so this module acts as a browser
 to get needed info.
 
 Every module method dies in case of error.
+
+=head1 DESCRIPTION
+
+Akado::Account version numbers uses Semantic Versioning standart.
+Please visit L<http://semver.org/> to find out all about this great thing.
 
 =head1 METHODS
 

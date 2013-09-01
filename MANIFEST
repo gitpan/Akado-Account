@@ -6,10 +6,10 @@ Makefile.PL
 README
 dist.ini
 lib/Akado/Account.pm
-release_checklist
 t/00-load.t
 t/_parse_xml.t
 t/author-boilerplate.t
 t/author-pod-coverage.t
 t/author-pod.t
 t/author-whitespaces.t
+t/release-cpan-changes.t

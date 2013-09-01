@@ -10,3 +10,13 @@ Revision history for Akado::Account
         * Module is now released with Dist::Zilla
         * Added .travis.yml
         * Some fixes in tests
+
+1.0.0   2013-09-01
+        [Major]
+        * Using SemVer for version numbers
+
+        [Patch]
+        * Simplifying POD
+        * Added Perl 5.8 to be checked by Travis CI
+        * Added install step in .travis.yml
+        * Removed file "release_checklist".
