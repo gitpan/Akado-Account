@@ -1,6 +1,6 @@
 package Akado::Account;
 {
-  $Akado::Account::VERSION = '1.0.0';
+  $Akado::Account::VERSION = '1.1.0';
 }
 
 # ABSTRACT: get internet provider Akado account info
@@ -84,12 +84,10 @@ sub _parse_xml {
 
     my $xp = XML::XPath->new( xml => $xml );
 
-    my $date = $xp->findnodes('//account/@date')->[0]->getNodeValue();
-    my $balance = $xp->findnodes('//status[@description="Остаток на счете"]/@amount')->[0]->getNodeValue();
-    my $next_month_payment = $xp->findnodes('//status[@description="Стоимость услуг в следующем месяце"]/@amount')->[0]->getNodeValue();
+    my $balance = $xp->findnodes('//status[contains(@description, "Остаток на счете на")]/@amount')->[0]->getNodeValue();
+    my $next_month_payment = $xp->findnodes('//status[@description="Стоимость услуг в следующем календарном месяце"]/@amount')->[0]->getNodeValue();
 
     my $parsed_account_info = {
-        date => $date,
         balance => $balance,
         next_month_payment => $next_month_payment,
     };
@@ -182,13 +180,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Akado::Account - get internet provider Akado account info
 
 =head1 VERSION
 
-version 1.0.0
+version 1.1.0
 
 =head1 SYNOPSIS
 
@@ -296,7 +296,6 @@ It will return something like:
 
     {
         balance            => 1558.82,
-        date               => "2012-10-02",
         next_month_payment => 779,
     }
 

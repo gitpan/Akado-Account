@@ -20,3 +20,11 @@ Revision history for Akado::Account
         * Added Perl 5.8 to be checked by Travis CI
         * Added install step in .travis.yml
         * Removed file "release_checklist".
+
+1.1.0   2014-01-02
+        [Minor]
+        * Working with new xml format
+
+        [Patch]
+        * Removed unused variable in internal structure
+        * Removed author tests
