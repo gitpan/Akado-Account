@@ -28,3 +28,7 @@ Revision history for Akado::Account
         [Patch]
         * Removed unused variable in internal structure
         * Removed author tests
+
+1.2.0   2014-05-06
+        [Minor]
+        * Working with new site office.akado.ru
